@@ -1,9 +1,20 @@
 
+### Install Required Packages
+
+```{r}
+library(ggplot2)
+library(plotly)
+library(dplyr)
+library(readr)
+```
+
+### Get Data & Make Plot
+
 ```{r}
 transactions <- read_csv("~/Downloads/transactions (1).csv")
 mint_transactions <- transactions %>%
-  mutate(transaction_date = as.Date(strptime(transactions$Date, format="%m/%d/%Y")),
-         real_transaction = ifelse(`Transaction Type` == "debit", Amount * -1, Amount))
+  mutate(transaction_date = as.Date(strptime(transactions$Date, format="%m/%d/%Y")),     #format date
+         real_transaction = ifelse(`Transaction Type` == "debit", Amount * -1, Amount))  #add sign to transaction
   
   
 
